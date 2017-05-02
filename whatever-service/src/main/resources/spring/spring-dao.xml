@@ -11,7 +11,7 @@
 
 
 	<!-- 动态数据源 -->
-	<bean id="dynamicDataSource" class="com.wx.util.dataSourceUtils.DynamicDataSource">
+	<bean id="dynamicDataSource" class="com.wx.whatever.common.datasource.DynamicDataSource">
 		<!-- 通过key-value关联数据源 -->
 		<property name="targetDataSources">
 			<map>
@@ -31,7 +31,7 @@
 
 		<property name="plugins">
 			<array>
-				<bean class="com.wx.util.dataSourceUtils.DynamicPlugin"></bean>
+				<bean class="com.wx.whatever.common.datasource.DynamicPlugin"></bean>
 
 				<!--mybatis pagehelper分页插件-->
 				<bean class="com.github.pagehelper.PageInterceptor">
