@@ -1,4 +1,4 @@
-package com.wx.whatever.common.redis;
+package com.wx.whatever.common.util;
 
 /**
  * Created by wxper on 2017/4/1.

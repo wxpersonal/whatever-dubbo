@@ -37,7 +37,7 @@
         </property>
     </bean>
 
-    <bean id="redisUtil" class="com.wx.util.RedisCacheUtil"/>
+    <bean id="redisUtil" class="com.wx.whatever.common.util.RedisCacheUtil"/>
 
 
 
