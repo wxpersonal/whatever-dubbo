@@ -22,6 +22,6 @@
 	<dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" register="${dubbo.registry.register}" subscribe="${dubbo.registry.subscribe}"/>
 	
 	<!-- 生成远程服务代理，可以像使用本地bean一样使用demoService,url表示直连服务端,仅用于测试 -->
-	<!--<dubbo:reference id="operatelogService" interface="com.xwtech.wingservice.service.IOperatelogService" url="${dubbo.reference.url}"/>-->
+	<dubbo:reference id="systemCodeService" interface="com.wx.whatever.service.ISystemCodeService" url="${dubbo.reference.url}"/>
 
 </beans>

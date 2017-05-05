@@ -27,12 +27,6 @@
         <property name="properties" ref="applicationProperties"></property>
     </bean>
     <bean id="springBeanInvoker" class="com.wx.whatever.common.util.SpringBeanInvoker" />
-    <import resource="spring-dao.xml" />
-    <import resource="spring-service.xml"/>
-    <import resource="spring-trans.xml"/>
     <import resource="dubbo-consumer.xml" />
-    <import resource="dubbo-provider.xml" />
-    <!-- 引入redis，如果不需要，请注释import -->
-    <import resource="spring-redis.xml"/>
 
 </beans>

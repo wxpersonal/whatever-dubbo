@@ -1,6 +1,7 @@
 package com.wx.whatever.controller;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.wx.whatever.pojo.SystemCode;
 import com.wx.whatever.service.ISystemCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,8 @@ public class SystemCodeController {
     ISystemCodeService systemCodeService;
 
     @RequestMapping("list")
-    public List<SystemCode> listCode(){
-        Page page = new Page();
-        systemCodeService.query();
-        return null;
+    public PageInfo<SystemCode> listCode(){
+        PageInfo<SystemCode> systemCodePageInfo =  systemCodeService.query(1,10);
+        return systemCodePageInfo;
     }
 }
