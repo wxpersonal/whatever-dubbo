@@ -1,5 +1,6 @@
 package com.wx.whatever.aop;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,9 @@ import org.springframework.stereotype.Component;
 @Order(1)
 @Aspect
 @Component
+@Slf4j
 public class AspectjLog {
-	
-	private Logger logger = LoggerFactory.getLogger(AspectjLog.class);
-	
+
 	//定义通用切点，以便下面4个通知使用
 	
 	@Pointcut("execution(* com.wx.whatever.service.impl.*ServiceImpl.*(..))")
@@ -26,23 +26,23 @@ public class AspectjLog {
 	
 	@Before("logAop()")
 	public void logBefore(){
-		logger.debug("前置通知Before-->{}");
+		log.debug("前置通知Before-->{}");
 	}
 	
 	@AfterReturning("logAop()")
 	public void logAfterReturning(){
-		logger.debug("返回通知AfterReturning-->{}");
+		log.debug("返回通知AfterReturning-->{}");
 	}
 	
 	
 	@After("logAop()")
 	public void logAfter(){
-		logger.debug("后置通知After-->{}");
+		log.debug("后置通知After-->{}");
 	}
 	
 	@AfterThrowing("logAop()")
 	public void logAfterThrow(){
-		logger.debug("异常通知AfterThrowing-->{}");
+		log.debug("异常通知AfterThrowing-->{}");
 	}
 	
 	/*@Around("logAop()")
