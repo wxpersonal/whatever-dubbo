@@ -1,7 +1,5 @@
 package com.wx.whatever.service;
 
-import com.github.pagehelper.PageInfo;
-
 import java.util.List;
 
 /**
@@ -11,13 +9,15 @@ import java.util.List;
  */
 public interface IBaseService<T> {
 
-    int insert(T obj);
+    Integer insert(T obj);
 
-    T get(Integer id);
+    T getById(Integer id);
 
-    void update(T obj);
+    Integer update(T obj);
 
-    void delete(String ids);
+    Integer delete(String ids);
 
-    PageInfo<T> query(Integer pageNo, Integer pageSize);
+    List<T> list();
+
+    void initMapper();
 }

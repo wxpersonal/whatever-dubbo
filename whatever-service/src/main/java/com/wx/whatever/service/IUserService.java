@@ -1,10 +1,19 @@
 package com.wx.whatever.service;
 
-public interface IUserService extends IBaseService<User>{
+import com.wx.whatever.pojo.Permission;
+import com.wx.whatever.pojo.Role;
+import com.wx.whatever.pojo.User;
 
-	public User getUserById(Long userId);
+import java.util.List;
 
-	public void insertUser(User user);
+public interface IUserService extends IBaseService<User> {
 
-	public void saveForTest();
+    List<Role> getRolesByUserId(Integer userId);
+
+    List<Permission> getPermissionsByUserId(Integer userId);
+
+    User getUserByEmail(String email);
+
+    User getUserByMobile(String mobile);
+
 }
