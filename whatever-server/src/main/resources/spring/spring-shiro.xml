@@ -1,0 +1,74 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <!-- Realm 实现 -->
+    <bean id="emailRealm" class="com.wx.whatever.shiro.realm.EmailRealm"/>
+    <bean id="mobileRealm" class="com.wx.whatever.shiro.realm.MobileRealm"/>
+
+    <!--凭证匹配器-->
+    <bean id="authenticator" class="com.wx.whatever.shiro.authc.DefaultModularRealm">
+        <property name="realms">
+            <list>
+                <ref bean="emailRealm"/>
+                <ref bean="mobileRealm"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 会话DAO，可重写，持久化session -->
+    <bean id="customSessionDAO" class="com.wx.whatever.shiro.session.CustomSessionDao"/>
+
+    <!-- 会话监听器 -->
+    <bean id="sessionListener" class="com.wx.whatever.shiro.listener.CustomSessionListener"/>
+
+    <!-- 会话管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!-- 全局session超时时间 -->
+        <!--<property name="globalSessionTimeout" value="${zheng.upms.session.timeout}"/>-->
+        <!-- sessionDAO -->
+        <property name="sessionDAO" ref="customSessionDAO"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+        <property name="sessionListeners">
+            <list><ref bean="sessionListener"/></list>
+        </property>
+    </bean>
+
+    <!--权限匹配器-->
+    <bean id="authorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer">
+        <property name="realms">
+            <list>
+                <ref bean="emailRealm"/>
+                <ref bean="mobileRealm"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="authenticator" ref="authenticator"/>
+        <property name="authorizer" ref="authorizer"/>
+    </bean>
+
+    <!-- 会话Cookie模板 -->
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <!-- 不会暴露给客户端 -->
+        <property name="httpOnly" value="true"/>
+        <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
+        <property name="maxAge" value="-1"/>
+    </bean>
+
+    <!-- 基于Form表单的身份验证过滤器 -->
+    <!-- shiro的身份验证成功后的逻辑是这样的:如果原来的请求里面存在了一个请求地址,如:http://localhost/a/b/c,那么此时-->
+    <!-- shiro将自动跳转到a/b/c页面或对应的Controller,这时候自定义的successUrl是不生效的-->
+    <!-- 如果想要跳转到指定的页面只能重写onLoginSuccess()方法:-->
+    <!-- 1.进行重定向-->
+    <!-- 2.清空请求里面的请求地址,此时因为请求地址为空,则会使用我们自定义的successUrl-->
+    <bean id="formAuthenticationFilter" class="com.wx.whatever.shiro.filter.CustomFormAuthenticationFilter"/>
+
+
+</beans>

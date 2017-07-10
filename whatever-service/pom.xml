@@ -12,4 +12,12 @@
     <artifactId>whatever-service</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.wx</groupId>
+            <artifactId>whatever-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>

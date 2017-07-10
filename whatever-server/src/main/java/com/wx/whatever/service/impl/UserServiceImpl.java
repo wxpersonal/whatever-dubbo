@@ -1,77 +1,56 @@
 package com.wx.whatever.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.wx.whatever.base.BaseServiceImpl;
+import com.wx.whatever.dao.PermissionMapper;
+import com.wx.whatever.dao.RoleMapper;
 import com.wx.whatever.dao.UserMapper;
-import com.wx.whatever.pojo.SystemCode;
+import com.wx.whatever.pojo.Permission;
+import com.wx.whatever.pojo.Role;
 import com.wx.whatever.pojo.User;
 import com.wx.whatever.service.IUserService;
-import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implements IUserService {
 
-	@Autowired
-	private UserMapper userMapper;
-	
-	@Override
-	public User getUserById(Long userId) {
+    @Resource
+    private RoleMapper roleMapper;
 
-		return userMapper.selectByPrimaryKey(userId);
-	}
+    @Resource
+    private PermissionMapper permissionMapper;
 
-	@Override
-	public void insertUser(User user){
-		userMapper.insert(user);
-	}
+    @Resource
+    private UserMapper userMapper;
 
-	@Override
-	public void saveForTest() {
+    @Override
+    public List<Role> getRolesByUserId(Integer userId) {
+        return roleMapper.getRolesByUserId(userId);
+    }
 
-		User u = new User();
-		u.setUserid(10001l);
-		u.setUsername("weixiang");
-		u.setEmail("123456789");
-		userMapper.insert(u);
+    @Override
+    public List<Permission> getPermissionsByUserId(Integer userId) {
 
-		throw new RuntimeException("运行时异常");
-	}
+        List<Permission> permissionList = new ArrayList<Permission>();
+        List<Role> roleList = getRolesByUserId(userId);
+        for(Role role : roleList){
+            List<Permission> permissions = permissionMapper.getPermissionsByRoleId(role.getId());
+            permissionList.addAll(permissions);
+        }
+        return permissionList;
+    }
 
-	@Override
-	public int insert(User obj) {
-		return userMapper.insertSelective(obj);
-	}
+    @Override
+    public User getUserByEmail(String email) {
+        return userMapper.getUserByEmail(email);
+    }
 
-	@Override
-	public User get(Integer id) {
-		return userMapper.selectByPrimaryKey(id.longValue());
-	}
-
-	@Override
-	public void update(User obj) {
-		userMapper.updateByPrimaryKeySelective(obj);
-	}
-
-	@Override
-	public void delete(String ids) {
-		String[] split = StringUtils.split(ids);
-		for(String id : split){
-			userMapper.deleteByPrimaryKey(Long.parseLong(id));
-		}
-	}
-
-
-
-	@Override
-	public PageInfo<User> query(Integer pageNo, Integer pageSize) {
-		PageHelper.startPage(pageNo, pageSize);
-		List<User> result = userMapper.list();
-		PageInfo<User> pageInfo = new PageInfo<User>(result);
-		return pageInfo;
-	}
+    @Override
+    public User getUserByMobile(String mobile) {
+        return userMapper.getUserByMobile(mobile);
+    }
 }

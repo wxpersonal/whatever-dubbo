@@ -4,6 +4,8 @@
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:mvc="http://www.springframework.org/schema/mvc"
 	   xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:util="http://www.springframework.org/schema/util"
+
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc 
@@ -11,16 +13,15 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd
 		 http://www.springframework.org/schema/task
-		 http://www.springframework.org/schema/task/spring-task-4.1.xsd">
-
+		 http://www.springframework.org/schema/task/spring-task-4.1.xsd
+		 http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 
 	<context:component-scan base-package="com.wx.whatever.controller" />
-	<!--<context:component-scan base-package="com.wx.whatever.task" />-->
 
-	<!-- 视图解析器 -->
-	<bean
-			class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
@@ -33,9 +34,50 @@
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 
-	<bean id="springBeanInvoker" class="com.wx.whatever.common.util.SpringBeanInvoker"></bean>
-	
-	<!-- 默认的注解映射的支持 -->
-	<mvc:annotation-driven />
+	<bean id="springContextUtil" class="com.wx.util.SpringContextUtil"/>
+
+    <bean class="com.wx.config.SwaggerConfig" id="swagger2Config"/>
+    <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+
+    <bean id="customObjectMapper" class="com.wx.config.CustomObjectMapper"/>
+    <!-- 避免IE在ajax请求时，返回json出现下载 -->
+    <bean id="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <!--先不配置，采用默认配置-->
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+
+        <property name="objectMapper" ref="customObjectMapper"></property>
+    </bean>
+
+    <!--使用fastjson作为解析json的工具-->
+    <!--<bean id="fastJsonHttpMessageConverter"
+          class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+        &lt;!&ndash;先不配置，采用默认配置&ndash;&gt;
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+        <property name="features">
+            <list>
+                <value>WriteMapNullValue</value>
+                <value>QuoteFieldNames</value>
+            </list>
+        </property>
+    </bean>-->
+    <!-- 默认的注解映射的支持 -->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <!--<ref bean="fastJsonHttpMessageConverter"/>-->
+            <ref bean="mappingJacksonHttpMessageConverter"></ref>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 	<task:annotation-driven/>
 </beans>

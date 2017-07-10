@@ -1,21 +1,25 @@
 package com.wx.whatever.dao;
 
 import com.wx.whatever.pojo.User;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Long userid);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 
     int insertSelective(User record);
 
-    User selectByPrimaryKey(Long userid);
+    User selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
 
-    List<User> list();
+    /**
+     * 在下面添加自定义方法
+     */
+    User getUserByMobile(@Param("mobile") String mobile);
+
+    User getUserByEmail(@Param("email") String email);
 }

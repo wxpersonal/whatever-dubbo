@@ -1,7 +1,5 @@
 package com.wx.whatever.service;
 
-import com.wx.whatever.pojo.User;
-
 public interface IUserService extends IBaseService<User>{
 
 	public User getUserById(Long userId);
