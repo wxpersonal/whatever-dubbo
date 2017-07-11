@@ -1,7 +1,8 @@
 package com.wx.whatever.controller;
 
-import com.wx.whatever.schedule.QuartzJobFactory;
-import com.wx.whatever.schedule.ScheduleJob;
+
+import com.wx.whatever.quartz.QuartzJobFactory;
+import com.wx.whatever.quartz.ScheduleJob;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

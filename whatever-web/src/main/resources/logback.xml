@@ -23,7 +23,7 @@
         </encoder>
     </appender>
 
-    <logger name="org.mybatis" additivity="false">
+    <!--<logger name="org.mybatis" additivity="false">
         <level value="debug"/>
     </logger>
     <logger name="org.apache.ibatis">
@@ -32,7 +32,7 @@
     <logger name="java.sql" additivity="false">
         <level value="debug"/>
     </logger>
-    <logger name="org.springframework" level="info" additivity="false"/>
+    <logger name="org.springframework" level="info" additivity="false"/>-->
 
 
     <!-- project default level -->

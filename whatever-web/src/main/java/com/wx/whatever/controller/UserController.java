@@ -22,7 +22,8 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "id/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "id/{id}")
+    @ResponseBody
     public User getUserById(@PathVariable Integer id, HttpServletRequest request) {
         return userService.getById(id);
     }
