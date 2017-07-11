@@ -1,4 +1,4 @@
-package com.wx.whatever.dataSourceConfig;
+package com.wx.whatever.datasource;
 
 /**
  * Created by wxper on 2017/4/3.

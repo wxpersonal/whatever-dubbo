@@ -1,7 +1,7 @@
 package com.wx.whatever.shiro.session;
 
 
-import com.wx.util.RedisUtil;
+import com.wx.whatever.util.RedisUtil;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;

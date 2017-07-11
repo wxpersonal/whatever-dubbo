@@ -1,3 +1,4 @@
+/*
 package com.wx.whatever.aop;
 
 import org.aspectj.lang.annotation.*;
@@ -6,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+*/
 /**
  * 切面
  * @author weix
  *
- */
+ *//*
+
 
 @Order(1)
 @Aspect
@@ -45,7 +48,8 @@ public class AspectjLog {
 		log.info("异常通知AfterThrowing-->{}");
 	}
 	
-	/*@Around("logAop()")
+	*/
+/*@Around("logAop()")
 	public void logAround(ProceedingJoinPoint jp){
 		try {
 			log.debug("自定义前置通知Before-->{}");
@@ -56,7 +60,9 @@ public class AspectjLog {
 			throwable.printStackTrace();
 		}
 		log.debug("自定义后置通知After-->{}");
-	}*/
+	}*//*
+
 	
 	
 }
+*/

@@ -20,14 +20,16 @@
     </appender>
 
     <!-- 打印sql需要的一些日志级别 -->
-   <!-- 
+
     <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
 		<appender-ref ref="console"/>
 	</logger>
 	<logger name="java.sql" level="DEBUG" additivity="false">
 	    <appender-ref ref="console"/>
-	</logger> 
- -->
+	</logger>
+    <logger name="java.sql" level="DEBUG" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
  	<!-- 表示在控制台以及日志文件中打印info级别以上的日志信息 -->
     <root level="debug">
         <appender-ref ref="console" />

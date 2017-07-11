@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+    <!-- 配置文件列表 -->
+    <bean id="applicationProperties"
+          class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="fileEncoding" value="UTF-8"></property>
+        <property name="locations">
+            <list>
+                <value>classpath:properties/localconfig.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--非注解方式获取属性值，程序中通过CustomizedPropertyConfigurer.getContextProperty("XX") -->
+	<bean id="propertyconfig"
+		class="com.wx.whatever.util.PropertyUtil">
+		<property name="properties" ref="applicationProperties"></property>
+	</bean>
+	
+	<bean id="springBeanInvoker" class="com.wx.whatever.util.SpringContextUtil"></bean>
+	
+ 	<bean id="redisCacheUtil" class="com.wx.whatever.util.RedisUtil"></bean>
+
+	<import resource="dubbo-consumer.xml"/>
+    <import resource="spring-redis.xml" />
+
+</beans>

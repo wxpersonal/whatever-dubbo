@@ -1,4 +1,4 @@
-package com.wx.whatever.dataSourceConfig;
+package com.wx.whatever.datasource;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.keygen.SelectKeyGenerator;

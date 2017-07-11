@@ -2,8 +2,6 @@ package com.wx.whatever.controller;
 
 import com.wx.whatever.schedule.QuartzJobFactory;
 import com.wx.whatever.schedule.ScheduleJob;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.HashMap;
 
-@Api(description = "任务调度")
 //@Controller
 @RestController
 @RequestMapping("quartz")
@@ -32,7 +29,6 @@ public class QuartzController {
 
 //    Scheduler scheduler = schedulerFactoryBean.getScheduler();
 
-    @ApiOperation(value = "添加一个任务")
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String add(HttpServletRequest request) {
         System.out.println("----------------");

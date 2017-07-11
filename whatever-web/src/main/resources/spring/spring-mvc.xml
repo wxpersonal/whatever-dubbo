@@ -34,11 +34,11 @@
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
 
-	<bean id="springContextUtil" class="com.wx.util.SpringContextUtil"/>
+	<bean id="springContextUtil" class="com.wx.whatever.util.SpringContextUtil"/>
 
-    <bean class="com.wx.whatever.config.SwaggerConfig" id="swagger2Config"/>
+<!--    <bean class="com.wx.whatever.config.SwaggerConfig" id="swagger2Config"/>
     <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
-    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>-->
 
     <bean id="customObjectMapper" class="com.wx.whatever.config.CustomObjectMapper"/>
     <!-- 避免IE在ajax请求时，返回json出现下载 -->

@@ -1,6 +1,6 @@
 package com.wx.whatever.service.impl;
 
-import com.wx.whatever.common.util.SpringContextUtil;
+import com.wx.whatever.util.SpringContextUtil;
 import com.wx.whatever.service.IBaseService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.wx.whatever.common.util;
+package com.wx.whatever.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;

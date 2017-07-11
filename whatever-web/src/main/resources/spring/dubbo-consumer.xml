@@ -18,7 +18,7 @@
 	<dubbo:registry id="consumer" protocol="${dubbo.registry.protocol}"  address="${dubbo.commonserver.address}" register="${dubbo.commonserver.register}" subscribe="${dubbo.commonserver.subscribe}"/>
 	
 	<!-- 生成远程服务代理，可以像使用本地bean一样使用demoService,url表示直连服务端,仅用于测试 -->
-	<dubbo:reference id="testServer" url="${dubbo.commonserver.url}" interface="com.xwtech.commonservice.service.ITestServer" />
+	<dubbo:reference id="userService" url="${dubbo.commonserver.url}" interface="com.wx.whatever.service.IUserService" />
 
 	
 </beans>

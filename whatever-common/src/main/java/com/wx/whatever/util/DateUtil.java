@@ -1,4 +1,4 @@
-package com.wx.whatever.common.util;
+package com.wx.whatever.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

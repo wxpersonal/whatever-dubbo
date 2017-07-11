@@ -1,4 +1,4 @@
-package com.wx.whatever.common.util;
+package com.wx.whatever.util;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 

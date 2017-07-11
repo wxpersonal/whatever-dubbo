@@ -1,4 +1,4 @@
-package com.wx.whatever.dataSourceConfig;
+package com.wx.whatever.datasource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
