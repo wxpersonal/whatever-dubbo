@@ -1,4 +1,4 @@
-package com.wx.whatever.quartz;
+package com.wx.whatever.job;
 
 /**
  * Created by Administrator on 2017/6/27.

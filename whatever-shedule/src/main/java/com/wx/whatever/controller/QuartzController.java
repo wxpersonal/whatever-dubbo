@@ -1,7 +1,9 @@
 package com.wx.whatever.controller;
 
-import com.wx.whatever.quartz.QuartzJobFactory;
-import com.wx.whatever.quartz.ScheduleJob;
+import com.wx.whatever.job.JobTest1;
+import com.wx.whatever.job.ScheduleJob;
+import com.wx.whatever.pojo.User;
+import com.wx.whatever.service.IUserService;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,12 +29,15 @@ public class QuartzController {
     @Qualifier("schedulerFactoryBean")
     SchedulerFactoryBean schedulerFactoryBean;
 
+    @Autowired
+    IUserService userService;
+
 //    Scheduler scheduler = schedulerFactoryBean.getScheduler();
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @RequestMapping(value = "add")
     public String add(HttpServletRequest request) {
-        System.out.println("----------------");
-        ScheduleJob job = new ScheduleJob();
+
+        JobTest1 job = new JobTest1();
         job.setJobId("10001");
         job.setJobName("data_import");
         job.setJobGroup("dataWork");
@@ -40,8 +45,10 @@ public class QuartzController {
         job.setCronExpression("0/5 * * * * ?");
         job.setDesc("数据导入任务");
 
+        User byId = userService.getById(1);
+
         Scheduler scheduler = schedulerFactoryBean.getScheduler();
-        JobDetail jobDetail = JobBuilder.newJob(QuartzJobFactory.class)
+        JobDetail jobDetail = JobBuilder.newJob(JobTest1.class)
                 .withIdentity(job.getJobName(), job.getJobGroup()).build();
         jobDetail.getJobDataMap().put("scheduleJob", job);
 
