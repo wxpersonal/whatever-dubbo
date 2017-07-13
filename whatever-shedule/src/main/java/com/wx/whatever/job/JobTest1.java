@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * Created by Administrator on 2017/7/1.
  */
 @DisallowConcurrentExecution
-@Component
+@Component("jobTest1")
 public class JobTest1 extends ScheduleJob implements Job  {
 
     @Autowired

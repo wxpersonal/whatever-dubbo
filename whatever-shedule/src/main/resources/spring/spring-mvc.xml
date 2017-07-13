@@ -15,7 +15,6 @@
 
 
 	<context:component-scan base-package="com.wx.whatever.controller" />
-    <context:component-scan base-package="com.wx.whatever.job" />
 
     <!-- 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
