@@ -26,6 +26,7 @@
         <module>whatever-common</module>
         <module>whatever-service</module>
         <module>whatever-web</module>
+        <module>whatever-shedule</module>
     </modules>
 
     <dependencies>
