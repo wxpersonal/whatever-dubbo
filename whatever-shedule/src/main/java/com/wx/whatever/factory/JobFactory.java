@@ -6,7 +6,7 @@ import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.scheduling.quartz.AdaptableJobFactory;
 
 /**
- * Created by wxper on 2017/7/13.
+ * 是@Autowired在 job中可用
  */
 public class JobFactory extends AdaptableJobFactory {
 

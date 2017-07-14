@@ -9,9 +9,9 @@
     </appender>
 
     <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logDir}/dubbodemo_provider.log</file>
+        <file>${logDir}/whatever_api.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logDir}/dubbodemo_provider.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${logDir}/whatever_api.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>

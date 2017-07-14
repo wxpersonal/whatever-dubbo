@@ -1,5 +1,7 @@
 package com.wx.whatever.pojo;
 
+import com.wx.whatever.common.BasePojo;
+
 import java.util.Date;
 
 public class User extends BasePojo {

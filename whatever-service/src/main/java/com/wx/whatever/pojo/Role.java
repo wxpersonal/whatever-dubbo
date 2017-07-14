@@ -1,6 +1,8 @@
 package com.wx.whatever.pojo;
 
 
+import com.wx.whatever.common.BasePojo;
+
 public class Role extends BasePojo {
     private Integer id;
 

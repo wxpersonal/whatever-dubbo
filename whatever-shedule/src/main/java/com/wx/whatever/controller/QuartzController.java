@@ -1,7 +1,7 @@
 package com.wx.whatever.controller;
 
 import com.wx.whatever.job.JobTest1;
-import com.wx.whatever.job.ScheduleJob;
+import com.wx.whatever.common.ScheduleJob;
 import com.wx.whatever.pojo.User;
 import com.wx.whatever.service.IUserService;
 import org.quartz.*;
@@ -46,7 +46,6 @@ public class QuartzController {
         job.setDesc("数据导入任务");
 
         User byId = userService.getById(1);
-
         Scheduler scheduler = schedulerFactoryBean.getScheduler();
         JobDetail jobDetail = JobBuilder.newJob(JobTest1.class)
                 .withIdentity(job.getJobName(), job.getJobGroup()).build();

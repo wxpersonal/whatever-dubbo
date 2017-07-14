@@ -1,5 +1,7 @@
 package com.wx.whatever.pojo;
 
+import com.wx.whatever.common.BasePojo;
+
 public class Permission extends BasePojo {
     private Integer id;
 

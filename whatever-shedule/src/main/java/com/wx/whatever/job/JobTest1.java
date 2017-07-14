@@ -1,5 +1,6 @@
 package com.wx.whatever.job;
 
+import com.wx.whatever.common.ScheduleJob;
 import com.wx.whatever.pojo.User;
 import com.wx.whatever.service.IUserService;
 import org.quartz.DisallowConcurrentExecution;
@@ -8,7 +9,6 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * Created by Administrator on 2017/7/1.

@@ -1,4 +1,4 @@
-package com.wx.whatever.pojo;
+package com.wx.whatever.common;
 
 import java.io.Serializable;
 import java.util.Date;

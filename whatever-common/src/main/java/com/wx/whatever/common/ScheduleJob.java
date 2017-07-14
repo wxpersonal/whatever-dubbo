@@ -1,4 +1,4 @@
-package com.wx.whatever.job;
+package com.wx.whatever.common;
 
 /**
  * Created by Administrator on 2017/6/27.

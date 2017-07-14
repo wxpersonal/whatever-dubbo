@@ -1,5 +1,7 @@
 package com.wx.whatever.pojo;
 
+import com.wx.whatever.common.BasePojo;
+
 public class UserRoleKey extends BasePojo {
     private Integer userId;
 
