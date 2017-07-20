@@ -27,6 +27,7 @@
         <module>whatever-service</module>
         <module>whatever-web</module>
         <module>whatever-shedule</module>
+        <module>designmodel</module>
     </modules>
 
     <dependencies>

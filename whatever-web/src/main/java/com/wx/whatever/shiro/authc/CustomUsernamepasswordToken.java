@@ -8,22 +8,22 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 public class CustomUsernamepasswordToken extends UsernamePasswordToken {
 
     //登录类型
-    private Integer loginType;
+    private String loginType;
 
-    public Integer getLoginType() {
+    public String getLoginType() {
         return this.loginType;
     }
 
-    public void setLoginType(Integer loginType) {
+    public void setLoginType(String loginType) {
         this.loginType = loginType;
     }
 
-    public CustomUsernamepasswordToken(String username, String password, Integer loginType) {
+    public CustomUsernamepasswordToken(String username, String password, String loginType) {
         super(username, password);
         this.loginType = loginType;
     }
 
-    public CustomUsernamepasswordToken(String username, String password, boolean rememberMe, String host, Integer loginType) {
+    public CustomUsernamepasswordToken(String username, String password, boolean rememberMe, String host, String loginType) {
         super(username, password, rememberMe, host);
         this.loginType = loginType;
     }

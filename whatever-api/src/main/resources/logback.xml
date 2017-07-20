@@ -30,7 +30,9 @@
     <logger name="java.sql" level="DEBUG" additivity="false">
         <appender-ref ref="console"/>
     </logger>
- 	<!-- 表示在控制台以及日志文件中打印info级别以上的日志信息 -->
+    <logger name="org.quartz" level="INFO" />
+
+    <!-- 表示在控制台以及日志文件中打印info级别以上的日志信息 -->
     <root level="debug">
         <appender-ref ref="console" />
         <appender-ref ref="rollingFile" />

@@ -27,6 +27,12 @@ public class EmailRealm extends AuthorizingRealm {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 授权验证
+     *
+     * @param principalCollection 认证人
+     * @return 授权信息
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
@@ -53,6 +59,13 @@ public class EmailRealm extends AuthorizingRealm {
         return simpleAuthorizationInfo;
     }
 
+    /**
+     * 用户认证
+     *
+     * @param authenticationToken 令牌
+     * @return 认证信息
+     * @throws AuthenticationException 认证失败
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
 

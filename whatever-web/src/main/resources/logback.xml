@@ -33,6 +33,7 @@
         <level value="debug"/>
     </logger>
     <logger name="org.springframework" level="info" additivity="false"/>-->
+    <logger name="org.quartz" level="INFO" />
 
 
     <!-- project default level -->

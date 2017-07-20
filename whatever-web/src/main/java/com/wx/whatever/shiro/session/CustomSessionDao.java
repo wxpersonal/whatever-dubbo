@@ -31,6 +31,7 @@ public class CustomSessionDao extends EnterpriseCacheSessionDAO {
     protected Serializable doCreate(Session session) {
         Serializable sessionId = generateSessionId(session);
         RedisUtil.set(WHATEVER_SESSION_ID + "_" + sessionId, session, 5, TimeUnit.MINUTES);
+        assignSessionId(session, sessionId);
         log.debug("doCreate >>>>> sessionId={}", sessionId);
         return sessionId;
     }

@@ -13,11 +13,11 @@ import java.util.Map;
 
 /**
  * Created by Administrator on 2017/6/20.
+ * 重写模块化用户验证器,根据登录界面传递的loginType参数,获取唯一匹配的realm
  */
 public class DefaultModularRealm extends ModularRealmAuthenticator {
 
     private Map<String, Object> definedRealms;
-
 
     /**
      * 调用单个realm执行操作

@@ -29,8 +29,7 @@
         <!--<property name="globalSessionTimeout" value="${zheng.upms.session.timeout}"/>-->
         <!-- sessionDAO -->
         <property name="sessionDAO" ref="customSessionDAO"/>
-        <property name="sessionIdCookieEnabled" value="true"/>
-        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionIdCookieEnabled" value="false"/>
         <property name="sessionValidationSchedulerEnabled" value="false"/>
         <property name="sessionListeners">
             <list><ref bean="sessionListener"/></list>
@@ -60,6 +59,9 @@
         <property name="httpOnly" value="true"/>
         <!-- 设置Cookie的过期时间，秒为单位，默认-1表示关闭浏览器时过期Cookie -->
         <property name="maxAge" value="-1"/>
+
+        <!-- Cookie名称 -->
+        <property name="name" value="whatever.session.id"/>
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
@@ -68,7 +70,30 @@
     <!-- 如果想要跳转到指定的页面只能重写onLoginSuccess()方法:-->
     <!-- 1.进行重定向-->
     <!-- 2.清空请求里面的请求地址,此时因为请求地址为空,则会使用我们自定义的successUrl-->
-    <bean id="formAuthenticationFilter" class="com.wx.whatever.shiro.filter.CustomFormAuthenticationFilter"/>
+    <bean id="formAuthenticationFilter" class="com.wx.whatever.shiro.filter.CustomFormAuthenticationFilter">
+        <!--该参数定义了用户表单中提交的'登陆类型'这个参数的名称-->
+        <property name="successUrl" value="/homePage"/>
+    </bean>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+
+        <!--shiro 核心安全接口  -->
+        <property name="securityManager" ref="securityManager"></property>
+        <!--登录时的连接  -->
+        <property name="loginUrl" value="/login.jsp"></property>
+        <!--登录成功之后要跳转的连接  -->
+        <property name="successUrl" value="/homePage.jsp"></property>
+        <!--未授权时跳转的连接  -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"></property>
+        <!--filterChainDefinitions  -->
+        <property name="filterChainDefinitions">
+            <value>
+                /login/loginForm = anon
+                /logout = logout
+                /** = authc
+            </value>
+        </property>
+    </bean>
 
 
 </beans>

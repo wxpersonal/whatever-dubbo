@@ -10,8 +10,8 @@ public interface CONST {
      * 登录类型
      */
     interface LOGINTYPE {
-        Integer EMAIN = 1;
-        Integer MOBILE = 2;
+        String EMAIN = "1";
+        String MOBILE = "2";
     }
 
     /**

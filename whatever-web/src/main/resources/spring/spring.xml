@@ -21,11 +21,10 @@
 		<property name="properties" ref="applicationProperties"></property>
 	</bean>
 	
-	<bean id="springContextUtil" class="com.wx.whatever.util.SpringContextUtil"></bean>
-	
- 	<bean id="redisUtil" class="com.wx.whatever.util.RedisUtil"></bean>
+	<bean id="springContextUtil" class="com.wx.whatever.util.SpringContextUtil"/>
 
 	<import resource="dubbo-consumer.xml"/>
     <import resource="spring-redis.xml"/>
+    <import resource="spring-shiro.xml"/>
 
 </beans>

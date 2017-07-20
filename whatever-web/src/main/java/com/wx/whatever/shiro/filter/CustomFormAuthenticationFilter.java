@@ -10,6 +10,11 @@ import javax.servlet.ServletResponse;
 
 public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 
+    public static final String DEFAULT_LOGIN_TYPE_PARAM = "loginType";
+
+    private String loginTypeParam = DEFAULT_LOGIN_TYPE_PARAM;
+
+
     /**
      * 重写该方法,为了将loginType参数保存到token中
      *
@@ -21,22 +26,22 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
     protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
         String username = getUsername(request);
         String password = getPassword(request);
-        Integer loginType = Integer.parseInt(getLoginType(request));
+        String loginType = getLoginType(request);
         return createToken(username, password, request, response, loginType);
     }
 
-    private AuthenticationToken createToken(String username, String password, ServletRequest request, ServletResponse response, Integer loginType) {
+    private AuthenticationToken createToken(String username, String password, ServletRequest request, ServletResponse response, String loginType) {
         boolean rememberMe = isRememberMe(request);
         String host = getHost(request);
         return createToken(username, password, rememberMe, host, loginType);
     }
 
-    private AuthenticationToken createToken(String username, String password, boolean rememberMe, String host, Integer loginType) {
+    private AuthenticationToken createToken(String username, String password, boolean rememberMe, String host, String loginType) {
 
         return new CustomUsernamepasswordToken(username, password, rememberMe, host, loginType);
     }
 
-    private AuthenticationToken createToken(String username, String password, Integer loginType) {
+    private AuthenticationToken createToken(String username, String password, String loginType) {
         return new CustomUsernamepasswordToken(username, password, loginType);
     }
 
@@ -44,4 +49,11 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
         return WebUtils.getCleanParam(request, "loginType");
     }
 
+    public String getLoginTypeParam() {
+        return loginTypeParam;
+    }
+
+    public void setLoginTypeParam(String loginTypeParam) {
+        this.loginTypeParam = loginTypeParam;
+    }
 }
